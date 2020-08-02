@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+{% block content %}
+<title>Map</title>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    
+    .Amaltas
+  {
+      background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Cassia_fistula.png?raw=true');
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+.Peepal 
+  {
+      background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Ficus_religiosa.png?raw=true');
+      background-size: cover;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+.Neem 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Azadirachta_indica.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Kikar 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Acacia_nilotica.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Scholar_tree 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Alstonia_scholaris.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Semal 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Bombax_ceiba.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Bargad 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Ficus_benghalensis.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Arjun 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Terminalia_arjuna.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Gulmohar 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Delonix_regia.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Sausage_tree 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Kigelia_africana.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+.Sausage_tree 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Delonix_regia.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+  .Pilkhan 
+  {
+   background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Ficus_virens.png?raw=true');
+   background-size: cover;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   cursor: pointer;
+  }
+
+
+  .marker {
+    background-image: url('https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree_icons/Cassia_fistula.png?raw=true');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+    
+  </style>
+  
+  <body>    
+  <div id="map"></div>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoieWtpbmc4OCIsImEiOiJja2QycnYzcXIxZ2s5MnVsN25vcXY4b3NrIn0.bW3lCNDDlKvVntohKYm43A';
+
+    // getting data from backend
+  var treeCodes   = JSON.parse("{{Tree_Codes|escapejs}}");
+  var commonNames = JSON.parse("{{Common_names|escapejs}}");
+  var longitudes  = JSON.parse("{{Longitudes|escapejs}}");
+  var latitudes   = JSON.parse("{{Latitudes|escapejs}}");
+  
+  var LONGITUDES = [];
+  var LATITUDES = [];
+  var COMMON_NAMES = [];
+  var TREE_CODES = [];
+  // parsing string as Float fields and adding them to array
+
+  for(var index=0; index<longitudes.length; index++)
+  {
+      LONGITUDES.push(parseFloat(longitudes[index]));
+      LATITUDES.push(parseFloat(latitudes[index]));
+      COMMON_NAMES.push(commonNames[index]);
+      TREE_CODES.push(parseFloat(treeCodes[index]));
+  }
+
+  
+
+
+  var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [LATITUDES[0], LONGITUDES[0]],
+      zoom: 18,
+      pitch: 60,
+      bearing: -60,
+    });
+
+  // add controls to map
+  map.addControl(new mapboxgl.NavigationControl());
+
+
+  
+
+  var w_markers = {
+    "type": "FeatureCollection",
+    features: [] 
+    };
+
+  for(var index=0; index<LONGITUDES.length; index++)
+  {
+
+    var data = {
+            'id' : 'places',
+            'type': 'Feature',
+            geometry: {
+            type: 'Point',
+            coordinates: [ LATITUDES[index], LONGITUDES[index] ]
+            },
+            properties: {
+              Tree_Specie: COMMON_NAMES[index],
+              Tree_code: TREE_CODES[index],
+              Links:"https://street-trees-map.herokuapp.com/get_tree_info/?ID=" + TREE_CODES[index] ,        
+               }
+          }
+
+    //adding objects
+     w_markers.features.push(data);
+  }
+
+
+  map.on('load', function(e) {
+  // Add the data to your map as a layer
+  map.addLayer({
+    id: 'locations',
+    type: 'symbol',
+    // Add a GeoJSON source containing place coordinates and information.
+    source: {
+      type: 'geojson',
+      data: w_markers
+    },
+     layout: {
+      'icon-image': 'restaurantO-12',
+      'icon-allow-overlap': true,
+    }
+  });
+});
+
+//add custom icons-markers on map
+
+
+w_markers.features.forEach(function(marker) {
+
+// create a HTML element for each feature
+var el = document.createElement('div');
+
+
+
+switch(marker.properties.Tree_Specie)
+{
+  case "Peepal":
+  el.className = "Peepal";
+  break;
+
+  case "Bargad":
+  el.className = "Bargad";
+  break;
+
+  case "Amaltas":
+  el.className="Gulmohar";
+  break;
+
+  case "Pilkhan":
+  el.className = "Pilkhan";
+  break;
+
+  case "Scholar_tree":
+  el.className = "Scholar_tree";
+  break;
+
+  case "Sausage_tree":
+  el.className = "Sausage_tree";
+  break;
+
+  case "Semal":
+  el.className = "Semal";
+  break;
+
+  case "Neem":
+  el.className = "Neem";
+  break;
+
+  case "Arjun":
+  el.className = "Arjun";
+  break;
+
+  default:
+  el.className = "marker";
+    
+}
+
+// make a marker for each feature and add to the map
+new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+        .setHTML("<h3>"+marker.properties.Tree_Specie +"</h3>"+'<h3><a href="' + marker.properties.Links + '\" target=\"_blank\">' + marker.properties.Tree_code + '</a></h3>'))
+        .addTo(map);
+
+    });
+
+
+
+map.on('click', 'places', function (e) {
+    var coordinates = e.features[0].geometry.coordinates.slice();
+var description = e.features[0].properties.description;
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    new mapboxgl.Popup()
+.setLngLat(coordinates)
+.setHTML(description)
+.addTo(map);
+});
+    
+  
+  </script>
+
+
+  </body>
+
+{% endblock %}

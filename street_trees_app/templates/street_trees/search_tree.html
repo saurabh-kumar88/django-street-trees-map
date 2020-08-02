@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <title>Search Tree</title>    
+  <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Search</button>
+      </div>
+    </form>
+     
+  </div>
+
+<h2 style="text-align: center;">OR</h2>
+
+<div class="container">
+  <b>Scan These Sample QR Codes</b>
+  <div class="row-img">
+    <div class="col-img">
+      <img src="https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/sample%20QR%20codes/sample1.png?raw=true">
+    </div>
+    <div class="col-img">
+      <img src="https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/sample%20QR%20codes/sample2.png?raw=true">
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
