@@ -83,16 +83,18 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-        # 'OPTIONS': {
-        #     'database'  : 'XXXXX',
-        #     'user'      : 'XXXXX',
-        #     'password'  : 'XXXXX',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.path.join(BASE_DIR, 'mysql'),
+        'OPTIONS': {
+            'database'  : 'XXXXX',
+            'user'      : 'XXXXX',
+            'password'  : 'XXXXX',
             
             
-        # },
+        },
     }
 }
 
