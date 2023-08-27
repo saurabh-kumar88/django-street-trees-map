@@ -22,15 +22,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = (os.environ.get('SECRET_KEY_STREET_TREES'))
+# SECRET_KEY = (os.environ.get('SECRET_KEY_STREET_TREES'))
+SECRET_KEY = 'bf04027ba8f1a68876f06a4c8998f5b2c2199d23c8818319'
  
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 # DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['street-trees-map.herokuapp.com', '127.0.0.1']
-
-
 
 # Application definition
 
@@ -84,14 +83,16 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'database'  : 'XXXXX',
-            'user'      : 'XXXXX',
-            'password'  : 'XXXXX',
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+        # 'OPTIONS': {
+        #     'database'  : 'XXXXX',
+        #     'user'      : 'XXXXX',
+        #     'password'  : 'XXXXX',
             
             
-        },
+        # },
     }
 }
 
