@@ -1,7 +1,9 @@
+import socket
+
 from django.shortcuts import render, redirect
 from json import dumps
 
-from django.http import HttpResponse,HttpResponseRedirect, HttpResponseNotFound 
+from django.http import HttpResponse,HttpResponseRedirect, HttpResponseNotFound, HttpRequest
 from django.contrib import messages
 from django.conf import settings
 from django.template import RequestContext
@@ -9,7 +11,6 @@ from django.template import RequestContext
 
 from .forms import Search_Tree_By_Code
 from .models import RK_Ashram_marg
-
 
 
 # Create your views here.
@@ -87,8 +88,6 @@ def search_tree(request):
 
 
   
-
-
 def get_tree_info(request):
   
   if request.method == 'GET':
@@ -96,14 +95,16 @@ def get_tree_info(request):
     
     # request database call
     treeInfo = RK_Ashram_marg.objects.all().filter(Tree_code=requested_tree_code)
-
+     
     context = {}
     for data in treeInfo:
       context['common_name'] = data.common_name
       context['botanicalName'] = data.scientific_name
+  
 
     context["treeInfo"] = treeInfo
-      
+    
+    
     return render(request, 'street_trees/tree_view.html', context=context)
 
   

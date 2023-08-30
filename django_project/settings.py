@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import django_heroku
 import os
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,10 +25,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'bf04027ba8f1a68876f06a4c8998f5b2c2199d23c8818319'
  
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['street-trees-map.herokuapp.com', '127.0.0.1']
+# ALLOWED_HOSTS = ['street-trees-map.herokuapp.com', 'localhost:8000']
+ALLOWED_HOSTS = ['localhost:8000']
 
 # Application definition
 
@@ -83,18 +83,16 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'mysql'),
-        'OPTIONS': {
-            'database'  : 'XXXXX',
-            'user'      : 'XXXXX',
-            'password'  : 'XXXXX',
-            
-            
-        },
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': os.path.join(BASE_DIR, 'mysql'),
+        # 'OPTIONS': {
+        #     'database'  : 'XXXXX',
+        #     'user'      : 'XXXXX',
+        #     'password'  : 'XXXXX',
+        # },
     }
 }
 

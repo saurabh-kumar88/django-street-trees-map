@@ -159,7 +159,9 @@
   var commonNames = JSON.parse("{{Common_names|escapejs}}");
   var longitudes  = JSON.parse("{{Longitudes|escapejs}}");
   var latitudes   = JSON.parse("{{Latitudes|escapejs}}");
+  var host_name   = JSON.parse("{{Host_names|escapejs}}");
   
+  console.log(host_name)
   var LONGITUDES = [];
   var LATITUDES = [];
   var COMMON_NAMES = [];
@@ -171,11 +173,8 @@
       LONGITUDES.push(parseFloat(longitudes[index]));
       LATITUDES.push(parseFloat(latitudes[index]));
       COMMON_NAMES.push(commonNames[index]);
-      TREE_CODES.push(parseFloat(treeCodes[index]));
+      TREE_CODES.push(treeCodes[index]);
   }
-
-  
-
 
   var map = new mapboxgl.Map({
       container: 'map',
