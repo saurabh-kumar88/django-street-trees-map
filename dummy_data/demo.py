@@ -1,5 +1,9 @@
 import json
+import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def read_json_db():
     with open("dummy_data/rk_ashram_dummy_data.json", "r") as f:
@@ -25,8 +29,13 @@ def search_tree_by_code(data_dict: dict, tree_code: str):
 
 
 if __name__ == "__main__":
-    tree_code = "rk_mq3089w0"
-    data = read_json_db()
+    
+    # tree_code = "rk_mq3089w0"
+    # data = read_json_db()
 
-    # print(get_all_columns(data_dict=data, column_name='common_name'))
-    print(search_tree_by_code(data_dict=data, tree_code="rk_mq3089w0"))
+    # # print(get_all_columns(data_dict=data, column_name='common_name'))
+    # print(search_tree_by_code(data_dict=data, tree_code="rk_mq3089w0"))
+
+
+
+    pass

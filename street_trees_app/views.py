@@ -131,9 +131,13 @@ def get_tree_info(request):
         #   context['botanicalName'] = data.scientific_name
 
         context["common_name"] = treeInfo.get("common_name")
-        context["botanicalName"] = treeInfo.get("data.scientific_name")
+        context["botanicalName"] = treeInfo.get("scientific_name")
 
         context["treeInfo"] = treeInfo
+
+        # testcode
+        print(f'context["treeInfo"] ------> {context["treeInfo"]}')
+        # ---- end testcode
 
         return render(request, "street_trees/tree_view.html", context=context)
 
