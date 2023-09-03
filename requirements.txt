@@ -6,6 +6,7 @@ chardet
 dj-database-url
 Django
 django-crispy-forms
+crispy_bootstrap5
 django-heroku
 django-iprestrict
 django-rename-app
@@ -22,6 +23,7 @@ pycountry
 pypng
 PyQRCode
 python-dateutil
+python-dotenv
 pytz
 qrcode
 requests

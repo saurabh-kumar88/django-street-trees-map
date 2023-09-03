@@ -151,17 +151,16 @@
     <div class="col-img">
         <img src="https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/leafs/{{botanicalName}}.jpg?raw=true" style="width:100%;">
         </div>
-        {% for obj in treeInfo %}
         <div class="col-img" style="text-align: left;">
-        <h2 class="species-name"><span class="species-color">{{obj.common_name}}</span></h2>
-        <p class="scientific-species-name">{{obj.scientific_name}}</p>
-        <p class="tree-details"><strong>ID Number: </strong> {{obj.Tree_code}}</p>
-        <p class="tree-details"><strong>Estimated Age: </strong> {{obj.Age}} Yrs.</p>
-        <p class="tree-details"><strong>Height: </strong> {{obj.Height}} feet.</p>
-        <p class="tree-details"><strong>Trunk Diameter: </strong> {{obj.Diameter_girth}} inches</p>
-        <p class="tree-details"><strong>Measurment Date: </strong> {{obj.created}}</p>
-        <p class="tree-details"><strong>Updated: </strong> {{obj.updated}}</p>
-        <p class="tree-details"><strong>Closest Address: </strong> {{obj.closest_address}}</p>
+        <h2 class="species-name"><span class="species-color">{{common_name}}</span></h2>
+        <p class="scientific-species-name">{{scientific_name}}</p>
+        <p class="tree-details"><strong>ID Number: </strong> {{treeInfo.Tree_code}}</p>
+        <p class="tree-details"><strong>Estimated Age: </strong> {{treeInfo.Age}} Yrs.</p>
+        <p class="tree-details"><strong>Height: </strong> {treeInfo.{Height}} feet.</p>
+        <p class="tree-details"><strong>Trunk Diameter: </strong> {{treeInfo.Diameter_girth}} inches</p>
+        <p class="tree-details"><strong>Measurment Date: </strong> {{treeInfo.created}}</p>
+        <p class="tree-details"><strong>Updated: </strong> {{treeInfo.updated}}</p>
+        <p class="tree-details"><strong>Closest Address: </strong> {{treeInfo.closest_address}}</p>
         <p class="tree-details"><strong>Recent tree care log : </strong></p>
         <p><a href="#" id="#" >Species Map and Details</a></p>
         <p class="tree-details"><a href="#" class="report-problem-btn">Suggest an Edit</a></p>
@@ -169,22 +168,14 @@
   </div>
 </div>
 
-
     <div class="row-img">
         <div class="col-img" style="text-align: center;">
             <img src="https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree-images/{{common_name}}.jpg?raw=true" class="tree-image">
         </div>
-
         <div class="col-img" style="text-align: center;">
-            <img src="https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree-images/{{common_name}}.jpg?raw=true" class="tree-image">
+            <img src="https://github.com/saurabh-kumar88/Images_for_django_app/blob/master/tree-images/{{common_name}}2.jpg?raw=true" class="tree-image">
         </div>
     </div>    
-
-    {% endfor %}
-
-
-<!--____________________________Sliding Effect_____________________________________________________--->
-
 
 <script>
 $(document).ready(function(){

@@ -4,19 +4,17 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Mandir_marg',
+            name="Mandir_marg",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('Tree_code', models.CharField(max_length=8)),
-                ('common_name', models.CharField(max_length=45)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("Tree_code", models.CharField(max_length=8)),
+                ("common_name", models.CharField(max_length=45)),
             ],
         ),
     ]
