@@ -28,15 +28,14 @@ SECRET_KEY = 'bf04027ba8f1a68876f06a4c8998f5b2c2199d23c8818319'
 DEBUG = True
 # DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-# ALLOWED_HOSTS = ['street-trees-map.herokuapp.com', 'localhost:8000']
-ALLOWED_HOSTS = ['localhost:8000']
+ALLOWED_HOSTS = ['street-trees-map.herokuapp.com', 'localhost:8000']
 
 # Application definition
 
 INSTALLED_APPS = [
     'street_trees_app',
-    'users_app',
     'crispy_forms',
+    'crispy_bootstrap5',
     'django_rename_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,17 +141,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-LOGIN_REDIRECT_URL = 'home'
-LOGIN_URL = 'login'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = (os.environ.get('EMAIL_USER'))
-EMAIL_HOST_PASSWORD = (os.environ.get('EMAIL_PASSWD'))
 
 
 
