@@ -23,6 +23,7 @@ pycountry
 pypng
 PyQRCode
 python-dateutil
+python-dotenv
 pytz
 qrcode
 requests
