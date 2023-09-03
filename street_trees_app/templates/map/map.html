@@ -159,9 +159,12 @@
   var commonNames = JSON.parse("{{Common_names|escapejs}}");
   var longitudes  = JSON.parse("{{Longitudes|escapejs}}");
   var latitudes   = JSON.parse("{{Latitudes|escapejs}}");
-  var host_name   = JSON.parse("{{Host_names|escapejs}}");
+  var host_name   = JSON.parse("{{host_name|escapejs}}");
+  var host_url = `https://${host_name}/get_tree_info/?ID=`
   
-  console.log(host_name)
+  if(host_name.includes("localhost")){
+    host_url = `http://${host_name}/get_tree_info/?ID=`
+  }
   var LONGITUDES = [];
   var LATITUDES = [];
   var COMMON_NAMES = [];
@@ -188,9 +191,6 @@
   // add controls to map
   map.addControl(new mapboxgl.NavigationControl());
 
-
-  
-
   var w_markers = {
     "type": "FeatureCollection",
     features: [] 
@@ -209,7 +209,7 @@
             properties: {
               Tree_Specie: COMMON_NAMES[index],
               Tree_code: TREE_CODES[index],
-              Links:"https://street-trees-map.herokuapp.com/get_tree_info/?ID=" + TREE_CODES[index] ,        
+              Links: host_url + TREE_CODES[index] ,        
                }
           }
 

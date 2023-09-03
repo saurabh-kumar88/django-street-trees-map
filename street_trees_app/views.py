@@ -49,11 +49,13 @@ def render_map(request):
   JSON_common_names = dumps(common_names)
   JSON_longitudes = dumps(longitudes)
   JSON_latitudes = dumps(latitudes)
+  JSON_host_name = dumps(str(request.get_host()))
 
-  context = {'Tree_Codes'    : JSON_tree_codes,
+  context = {'Tree_Codes' : JSON_tree_codes,
               'Common_names' : JSON_common_names,        
-              'Longitudes'    : JSON_longitudes,
-              'Latitudes'    : JSON_latitudes,
+              'Longitudes' : JSON_longitudes,
+              'Latitudes' : JSON_latitudes,
+              'host_name': JSON_host_name
                }
   return render(request, "map/map.html", context=context)
 
